@@ -4,7 +4,7 @@ generator-devjs
 
 ## Installation
 ```shell
-$ npm install -g generator-devjs
+$ npm i -g generator-devjs
 ```
 
 ## Usage
