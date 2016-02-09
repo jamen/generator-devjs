@@ -8,7 +8,7 @@
     "url": "git+https://github.com/devjs/generator-devjs.git"
   },
   "scripts": {
-    "build": "babel src -d generators --presets es2015",
+    "build": "babel src -d generators --presets es2015 --plugins add-module-exports",
     "prepublish": "npm run build"
   },
   "keywords": [
@@ -29,6 +29,7 @@
   "devDependencies": {
     "babel-cli": "^6.5.1",
     "babel-core": "^6.5.1",
+    "babel-plugin-add-module-exports": "^0.1.2",
     "babel-preset-es2015": "^6.5.0"
   }
 }
