@@ -8,7 +8,7 @@
     "url": "git+https://github.com/devjs/generator-devjs.git"
   },
   "scripts": {
-    "build": "babel src -d generators --presets es2015 --plugins add-module-exports",
+    "build": "rm -rf generators; babel src -d generators --presets es2015 --plugins add-module-exports",
     "prepublish": "npm run build"
   },
   "keywords": [
@@ -20,10 +20,12 @@
     "url": "https://github.com/devjs/generator-devjs/issues"
   },
   "files": [
-    "generators"
+    "generators",
+    "templates"
   ],
   "homepage": "https://github.com/devjs/generator-devjs#readme",
   "dependencies": {
+    "github-user": "^1.0.0",
     "yeoman-generator": "^0.22.5"
   },
   "devDependencies": {
