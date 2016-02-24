@@ -21,7 +21,7 @@
   },
   "files": [
     "generators",
-    "templates"
+    "template"
   ],
   "homepage": "https://github.com/devjs/generator-devjs#readme",
   "dependencies": {
