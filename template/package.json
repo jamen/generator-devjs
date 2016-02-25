@@ -1,9 +1,0 @@
-{
-  "name": "<%= name %>",
-  "author": "<%= author %>",
-  "desc": "<%= desc %>",
-  "version": "<%= version %>",
-  <% if (private) { %>"private": true,<% } %>
-  "files": [ "lib" ],
-  "main": "<%= entry %>"
-}
