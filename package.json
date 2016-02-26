@@ -1,6 +1,6 @@
 {
   "name": "generator-devjs",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "DevJS's Yeoman generator, for our own projects, but also for you.",
   "main": "app",
   "repository": {
