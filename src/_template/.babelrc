@@ -1,4 +1,4 @@
 {
-  "presets": [ <%= presets.split(/\s+?,\s+?/).map(f => '"'+f+'"').join(', ') %> ],
-  "plugins": [ <%= plugins.split(/\s+?,\s+?/).map(f => '"'+f+'"').join(', ') %> ]
+  "presets": [ <%- presets.split(/(?:\s+)?,(?:\s+)?/).map(f => '"'+f+'"').join(', ') %> ],
+  "plugins": [ <%- plugins.split(/(?:\s+)?,(?:\s+)?/).map(f => '"'+f+'"').join(', ') %> ]
 }

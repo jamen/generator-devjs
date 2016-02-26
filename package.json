@@ -8,7 +8,7 @@
     "url": "git+https://github.com/devjs/generator-devjs.git"
   },
   "scripts": {
-    "build": "rm -rf generators; babel src -d generators --presets es2015 --plugins add-module-exports; cp -r src/_template generators/_template",
+    "build": "rm -rf generators; babel src -d generators --presets es2015 --plugins add-module-exports --ignore 'src/_template/**'; cp -r src/_template generators/_template",
     "prepublish": "npm run build"
   },
   "keywords": [

@@ -15,7 +15,7 @@ class Babel extends Base {
         name: 'presets',
         message: 'Babel presets? (separated by commas)',
         type: 'input',
-        default: 'es2015',
+        default: 'es2015' + (devjs.react ? ', react' : ''),
       },
       {
         name: 'plugins',
@@ -24,25 +24,28 @@ class Babel extends Base {
         default: 'add-module-exports',
       }
     ], opts => {
-      Object.assign(this.options, opts);
+      Object.assign(devjs, opts);
       done();
     });
   }
 
   writing() {
-    console.log('Writing babel');
-    this.fs.copyTpl(
-      this.templatePath('.babelrc'),
-      this.destinationPath('.babelrc'),
-      this.options
+    ['.babelrc', 'src/index.js']
+    .forEach(file =>
+      this.fs.copyTpl(
+        this.templatePath(file),
+        this.destinationPath(file),
+        devjs
+      )
     );
   }
 
   install() {
-    const deps = [].concat([
-      this.options.presets.split(/\s+,\s+/).map(n => `babel-preset-${n}`),
-      this.options.plugins.split(/\s+,\s+/).map(n => `babel-plugin-${n}`)
-    ]);
+    const deps = [].concat(
+      devjs.presets.split(/(?:\s+)?,(?:\s+)?/).map(n => `babel-preset-${n}`),
+      devjs.plugins.split(/(?:\s+)?,(?:\s+)?/).map(n => `babel-plugin-${n}`)
+    );
+
     this.npmInstall(deps, { saveDev: true });
   }
 }

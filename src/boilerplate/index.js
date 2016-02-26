@@ -7,9 +7,7 @@ global.devjs = global.devjs || {};
 class Boilerplate extends Base {
   initializing() {
     this.sourceRoot(join(__dirname, '..', '_template'));
-  }
 
-  prompting() {
     const done = this.async();
     this.prompt([
       {
@@ -17,6 +15,12 @@ class Boilerplate extends Base {
         message: 'Project name?',
         type: 'input',
         default: this.appname,
+      },
+      {
+        name: 'entry',
+        message: 'Project entry?',
+        type: 'input',
+        default: 'lib',
       },
       {
         name: 'username',
@@ -29,6 +33,19 @@ class Boilerplate extends Base {
         message: 'Project description?',
         type: 'input',
       },
+      {
+        name: 'private',
+        message: 'Project private?',
+        type: 'confirm',
+        default: false,
+      },
+      {
+        name: 'tester',
+        message: 'Unit tester?',
+        type: 'list',
+        choices: ['ava', 'jest-cli', 'mocha', 'tap', 'tape', 'none'],
+        default: 'ava',
+      },
     ], opts => {
       user(opts.name, (err, github) => {
         opts.author = github.name;
@@ -40,9 +57,14 @@ class Boilerplate extends Base {
     });
   }
 
+  install() {
+    const deps = [];
+    if (devjs.tester !== 'none') deps.push(devjs.tester);
+    this.npmInstall(deps, { saveDev: true });
+  }
+
   writing() {
-    console.log('Writing boilerplate');
-    ['README.md', 'package.json']
+    ['README.md', 'package.json', '.gitignore', 'lib/index.js', 'test/index.js']
     .forEach(file =>
       this.fs.copyTpl(
         this.templatePath(file),
