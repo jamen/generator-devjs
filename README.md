@@ -8,6 +8,13 @@ $ npm i -g generator-devjs
 ```
 
 ## Usage
+```
+$ yo devjs
+$ yo devjs:subgen [...generators]
+# Example:
+$ yo devjs:babel devjs:eslint devjs:gulp
+```
+
 Usable generators:
   - `devjs`: Everything
   - `devjs:boilerplate`: Some common pieces (package.json, README, etc.)
@@ -34,7 +41,6 @@ Note: this disables the use of `args` on the packages you are _multiplexing_.
  - [Contact](#Credits)
 
 ## Author
-
 |![Jamen Marz][jamen-image]|
 |:--------:|
 | [@jamen] |
