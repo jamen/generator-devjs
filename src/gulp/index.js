@@ -1,14 +1,10 @@
 import { Base } from 'yeoman-generator';
-import { join } from 'path';
+import helper from '../_helper/initializing';
 
 global.devjs = global.devjs || {};
 
 class Gulp extends Base {
-  initializing() {
-    if (this.args) this.args.forEach(arg => this.composeWith(`devjs${arg}`));
-    this.sourceRoot(join(__dirname, '..', '_template'));
-    devjs.gulp = true;
-  }
+  initializing() { helper.call(this, 'gulp'); }
 
   prompting() {
     const done = this.async();

@@ -1,15 +1,10 @@
 import { Base } from 'yeoman-generator';
-import { join } from 'path';
+import helper from '../_helper/initializing';
 
 global.devjs = global.devjs || {};
 
 class Babel extends Base {
-  initializing() {
-    if (this.args) this.args.forEach(arg => this.composeWith(`devjs${arg}`));
-    this.sourceRoot(join(__dirname, '..', '_template'));
-    devjs.babel = true;
-  }
-
+  initializing() { helper.call(this, 'babel'); }
   prompting() {
     const done = this.async();
     this.prompt([

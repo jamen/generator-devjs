@@ -1,14 +1,10 @@
 import { Base } from 'yeoman-generator';
-import { join } from 'path';
+import helper from '../_helper/initializing';
 
 global.devjs = global.devjs || {};
 
 class Browserify extends Base {
-  initializing() {
-    if (this.args) this.args.forEach(arg => this.composeWith(`devjs${arg}`));
-    this.sourceRoot(join(__dirname, '..', '_template'));
-    devjs.browserify = true;
-  }
+  initializing() { helper.call(this, 'browserify'); }
 }
 
 export default Browserify;

@@ -1,15 +1,11 @@
 import { Base } from 'yeoman-generator';
-import { join } from 'path';
 import { waterfall } from 'async';
+import helper from '../_helper/initializing';
 
 global.devjs = global.devjs || {};
 
 class ESLint extends Base {
-  initializing() {
-    if (this.args) this.args.forEach(arg => this.composeWith(`devjs${arg}`));
-    this.sourceRoot(join(__dirname, '..', '_template'));
-    devjs.eslint = true;
-  }
+  initializing() { helper.call(this, 'eslint'); }
 
   prompting() {
     const done = this.async();
