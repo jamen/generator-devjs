@@ -6,6 +6,7 @@ global.devjs = global.devjs || { _: true };
 
 class DevJS extends Base {
   initializing() {
+    if (this.args) this.args.forEach(arg => this.composeWith(`devjs${arg}`));
     this.sourceRoot(join(__dirname, '..', '_template'));
     this.composeWith('devjs:boilerplate');
   }

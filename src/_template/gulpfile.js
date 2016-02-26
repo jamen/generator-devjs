@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 
-<% if (typeof babel !== 'undefined') { %>
+<% if (typeof gulp_babel !== 'undefined' && gulp_babel) { %>
 var babel = require('gulp-babel');
 var del = require('del');
 gulp.task('clean:javascript', function() { return del(['out/**.js']); });
@@ -9,7 +9,7 @@ gulp.task('build:javascript', function() {
     .pipe(babel())
     .pipe(gulp.dest('out'));
 });
-<% } if (typeof eslint !== 'undefined') { %>
+<% } if (typeof gulp_eslint !== 'undefined' && gulp_eslint) { %>
 var eslint = require('gulp-eslint');
 gulp.task('lint:javascript', function() {
   return gulp.src('src/**.js')
