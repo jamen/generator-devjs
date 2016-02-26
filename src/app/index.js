@@ -54,6 +54,19 @@ class DevJS extends Base {
 
       callback => {
         this.prompt({
+          name: 'gulp',
+          message: 'Gulp?',
+          type: 'confirm',
+          default: true,
+        }, ({ gulp }) => {
+          if (gulp) this.composeWith('devjs:gulp');
+          devjs.gulp = gulp;
+          callback();
+        });
+      },
+
+      callback => {
+        this.prompt({
           name: 'packager',
           message: 'Packager?',
           type: 'list',

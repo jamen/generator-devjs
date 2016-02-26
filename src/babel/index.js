@@ -41,7 +41,7 @@ class Babel extends Base {
   }
 
   install() {
-    const deps = [].concat(
+    const deps = ['babel-core'].concat(
       devjs.presets.split(/(?:\s+)?,(?:\s+)?/).map(n => `babel-preset-${n}`),
       devjs.plugins.split(/(?:\s+)?,(?:\s+)?/).map(n => `babel-plugin-${n}`)
     );
