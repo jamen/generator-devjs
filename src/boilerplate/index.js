@@ -66,6 +66,24 @@ class Boilerplate extends Base {
     });
   }
 
+  configuring() {
+    const pack = this.fs.readJSON(this.destinationPath('package.json'), {});
+
+    pack.name = devjs.name;
+    pack.author = devjs.author;
+    pack.version = '0.0.0';
+    pack.main = devjs.entry;
+    pack.repository = { type: 'git', url: devjs.repo };
+    pack.scripts = {
+      test: `${devjs.tester !== 'none' ? devjs.tester : 'node'} test`,
+    };
+    if (devjs.gulp) pack.scripts.prepublish = 'gulp';
+    pack.private = devjs.private;
+    pack.files = [ 'lib' ];
+
+    this.fs.writeJSON(this.destinationPath('package.json'), pack);
+  }
+
   install() {
     const deps = [];
     if (devjs.tester !== 'none') deps.push(devjs.tester);
@@ -73,7 +91,7 @@ class Boilerplate extends Base {
   }
 
   writing() {
-    ['README.md', 'package.json', '.gitignore', 'lib/index.js', 'test/index.js']
+    ['README.md', '.gitignore', 'lib/index.js', 'test/index.js']
     .forEach(file =>
       this.fs.copyTpl(
         this.templatePath(file),
