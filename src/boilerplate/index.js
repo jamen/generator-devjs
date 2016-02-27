@@ -1,14 +1,14 @@
 import { Base } from 'yeoman-generator';
 import { join } from 'path';
+import helper from '../_helper/initializing';
 import user from 'github-user';
 
 global.devjs = global.devjs || {};
 
 class Boilerplate extends Base {
-  initializing() {
-    if (this.args) this.args.forEach(arg => this.composeWith(`devjs${arg}`));
-    this.sourceRoot(join(__dirname, '..', '_template'));
+  initializing() { helper.call(this, 'boilerplate'); }
 
+  prompting() {
     const done = this.async();
     this.prompt([
       {
@@ -47,6 +47,14 @@ class Boilerplate extends Base {
         choices: ['ava', 'jest-cli', 'mocha', 'tap', 'tape', 'none'],
         default: 'ava',
       },
+      {
+        name: 'repo',
+        message: 'Project repository?',
+        type: 'input',
+        default: ({ private: p, username: u, name: n }) => {
+          return p ? 'none' : `https://github.com/${u}/${n}`;
+        },
+      }
     ], opts => {
       user(opts.name, (err, github) => {
         opts.author = github.name;

@@ -1,15 +1,12 @@
 import { Base } from 'yeoman-generator';
 import { join } from 'path';
+import helper from '../_helper/initializing';
 import { series } from 'async';
 
 global.devjs = global.devjs || { _: true };
 
 class DevJS extends Base {
-  initializing() {
-    if (this.args) this.args.forEach(arg => this.composeWith(`devjs${arg}`));
-    this.sourceRoot(join(__dirname, '..', '_template'));
-    this.composeWith('devjs:boilerplate');
-  }
+  initializing() { helper.call(this, 'app'); }
 
   prompting() {
     const done = this.async();
@@ -22,7 +19,6 @@ class DevJS extends Base {
           default: true,
         }, ({ babel }) => {
           if (babel) this.composeWith('devjs:babel');
-          devjs.babel = babel;
           callback();
         });
       },
@@ -35,7 +31,6 @@ class DevJS extends Base {
           default: true,
         }, ({ react }) => {
           if (react) this.composeWith('devjs:react');
-          devjs.react = react;
           callback();
         });
       },
@@ -48,7 +43,6 @@ class DevJS extends Base {
           default: true,
         }, ({ eslint }) => {
           if (eslint) this.composeWith('devjs:eslint');
-          devjs.eslint = eslint;
           callback();
         });
       },
@@ -61,7 +55,6 @@ class DevJS extends Base {
           default: true,
         }, ({ gulp }) => {
           if (gulp) this.composeWith('devjs:gulp');
-          devjs.gulp = gulp;
           callback();
         });
       },

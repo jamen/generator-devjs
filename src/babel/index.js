@@ -1,4 +1,5 @@
 import { Base } from 'yeoman-generator';
+import { join } from 'path';
 import helper from '../_helper/initializing';
 
 global.devjs = global.devjs || {};
@@ -21,6 +22,8 @@ class Babel extends Base {
         default: 'add-module-exports',
       }
     ], opts => {
+      opts.presets = opts.presets.split(/(?:\s+)?,(?:\s+)?/);
+      opts.plugins = opts.plugins.split(/(?:\s+)?,(?:\s+)?/);
       Object.assign(devjs, opts);
       done();
     });
@@ -39,8 +42,8 @@ class Babel extends Base {
 
   install() {
     const deps = ['babel-core'].concat(
-      devjs.presets.split(/(?:\s+)?,(?:\s+)?/).map(n => `babel-preset-${n}`),
-      devjs.plugins.split(/(?:\s+)?,(?:\s+)?/).map(n => `babel-plugin-${n}`)
+      devjs.presets.map(n => `babel-preset-${n}`),
+      devjs.plugins.map(n => `babel-plugin-${n}`)
     );
 
     this.npmInstall(deps, { saveDev: true });

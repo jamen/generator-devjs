@@ -5,6 +5,11 @@
   "version": "0.0.0",
   "scripts": {
     "test": "<%= tester !== 'none' ? tester : 'node test'  %>"
+  <% if (gulp) { %>, "prepublish": "gulp build"<% } %>
+  },
+  "repository": {
+    "type": "git",
+    "url": "<%= repo %>"
   },
   "main": "<%= entry %>",
   "files": [ "lib" ],

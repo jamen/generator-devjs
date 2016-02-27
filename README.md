@@ -9,10 +9,7 @@ $ npm i -g generator-devjs
 
 ## Usage
 ```
-$ yo devjs
-$ yo devjs:subgen [...generators]
-# Example:
-$ yo devjs:babel devjs:eslint devjs:gulp
+$ yo devjs[:subgen]
 ```
 
 Usable generators:
@@ -22,19 +19,6 @@ Usable generators:
   - `devjs:eslint` ESLint
   - `devjs:react` React
   - `devjs:gulp`: Gulp
-  - `devjs:mx`: Multiplexer, mixes generators
-
-Compose generators together:
-```javascript
-$ yo devjs:babel devjs:eslint devjs:gulp
-```
-
-To use generators outside of our scope, but without our packages, use `devjs:mx` for the _multiplexer_:
-```
-$ yo devjs:mx backbone angular browserify
-```
-Note: this disables the use of `args` on the packages you are _multiplexing_.
-
 
 ## Docs & Support
  - [Repo Issues](#)
