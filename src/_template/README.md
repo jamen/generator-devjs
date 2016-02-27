@@ -5,7 +5,7 @@
 
 ## Installation
 ```shell
-$ npm install<%= typeof cli !== 'undefined' && cli ? ' -g' : '' %> <%= private ? name : (username + '/' + name) %>
+$ npm install<%= typeof cli !== 'undefined' && cli ? ' -g' : '' %> <%= private ? name : `${username}/${name}` %>
 ```
 
 ## Usage<% if (typeof cli !== 'undefined' && cli) { %>
@@ -19,3 +19,6 @@ import <%= name %> from '<%= name %>';
 | ![<%= username %>][avatar] |
 |=--------------------------=|
 |   [<%= author %>][github]  |
+
+  [avatar]: <%= avatar %>
+  [github]: https://github.com/<%= username %>
