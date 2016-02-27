@@ -1,10 +1,10 @@
 import { Base } from 'yeoman-generator';
-import helper from '../_helper/initializing';
+import { init } from '../_helper';
 
 global.devjs = global.devjs || {};
 
 class React extends Base {
-  initializing() { helper.call(this, 'babel'); }
+  initializing() { init.call(this, 'babel'); }
 
   prompting() {
     const done = this.async();

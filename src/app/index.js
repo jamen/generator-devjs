@@ -1,12 +1,12 @@
 import { Base } from 'yeoman-generator';
 import { join } from 'path';
-import helper from '../_helper/initializing';
+import { init } from '../_helper';
 import { series } from 'async';
 
 global.devjs = global.devjs || { _: true };
 
 class DevJS extends Base {
-  initializing() { helper.call(this, 'app'); }
+  initializing() { init.call(this, 'app'); }
 
   prompting() {
     const done = this.async();

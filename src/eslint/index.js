@@ -1,11 +1,11 @@
 import { Base } from 'yeoman-generator';
 import { waterfall } from 'async';
-import helper from '../_helper/initializing';
+import { init, write } from '../_helper';
 
 global.devjs = global.devjs || {};
 
 class ESLint extends Base {
-  initializing() { helper.call(this, 'eslint'); }
+  initializing() { init.call(this, 'eslint'); }
 
   prompting() {
     const done = this.async();
@@ -44,14 +44,7 @@ class ESLint extends Base {
   }
 
   writing() {
-    ['.eslintrc.json']
-    .forEach(file =>
-      this.fs.copyTpl(
-        this.templatePath('.eslintrc.json'),
-        this.destinationPath('.eslintrc.json'),
-        devjs
-      )
-    );
+    write.call(this, ['.eslintrc.json']);
   }
 
   install() {

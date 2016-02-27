@@ -1,6 +1,6 @@
 import gulp from 'gulp';
 const master = [];
-function task(...args) { gulp.task(...args); master.push(args[0]); };
+function task(...args) { gulp.task(...args); master.push(args[0]) };
 <% if (typeof gulp_babel !== 'undefined' && gulp_babel) { %>
 import babel from 'gulp-babel';
 import del from 'del';

@@ -2,7 +2,7 @@ import { resolve } from 'path';
 
 global.devjs = global.devjs || {};
 
-export default function initializing(name) {
+export default function init(name) {
   this.sourceRoot(resolve(__dirname, '..', '_template'));
   devjs[name] = true;
 

@@ -1,10 +1,10 @@
 import { Base } from 'yeoman-generator';
-import helper from '../_helper/initializing';
+import { init, write } from '../_helper';
 
 global.devjs = global.devjs || {};
 
 class Gulp extends Base {
-  initializing() { helper.call(this, 'gulp'); }
+  initializing() { init.call(this, 'gulp'); }
 
   prompting() {
     const done = this.async();
@@ -31,14 +31,7 @@ class Gulp extends Base {
   }
 
   writing() {
-    [devjs.babel ? 'gulpfile.babel.js' : 'gulpfile.js']
-    .forEach(file =>
-      this.fs.copyTpl(
-        this.templatePath(file),
-        this.destinationPath(file),
-        devjs
-      )
-    );
+    write.call(this, [devjs.babel ? 'gulpfile.babel.js' : 'gulpfile.js']);
   }
 
   install() {

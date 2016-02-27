@@ -1,0 +1,3 @@
+.DS_Store
+node_modules
+<% if (typeof babel !== 'undefined' && babel) {%>lib<%}%>

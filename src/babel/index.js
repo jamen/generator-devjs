@@ -1,11 +1,11 @@
 import { Base } from 'yeoman-generator';
 import { join } from 'path';
-import helper from '../_helper/initializing';
+import { init, write } from '../_helper';
 
 global.devjs = global.devjs || {};
 
 class Babel extends Base {
-  initializing() { helper.call(this, 'babel'); }
+  initializing() { init.call(this, 'babel'); }
   prompting() {
     const done = this.async();
     this.prompt([
@@ -30,14 +30,7 @@ class Babel extends Base {
   }
 
   writing() {
-    ['.babelrc', 'src/index.js']
-    .forEach(file =>
-      this.fs.copyTpl(
-        this.templatePath(file),
-        this.destinationPath(file),
-        devjs
-      )
-    );
+    write.call(this, ['.babelrc', 'src/index.js']);
   }
 
   install() {

@@ -1,12 +1,12 @@
 import { Base } from 'yeoman-generator';
 import { join } from 'path';
-import helper from '../_helper/initializing';
+import { init, write } from '../_helper';
 import user from 'github-user';
 
 global.devjs = global.devjs || {};
 
 class Boilerplate extends Base {
-  initializing() { helper.call(this, 'boilerplate'); }
+  initializing() { init.call(this, 'boilerplate'); }
 
   prompting() {
     const done = this.async();
@@ -91,14 +91,7 @@ class Boilerplate extends Base {
   }
 
   writing() {
-    ['README.md', '.gitignore', 'lib/index.js', 'test/index.js']
-    .forEach(file =>
-      this.fs.copyTpl(
-        this.templatePath(file),
-        this.destinationPath(file),
-        devjs
-      )
-    )
+    write.call(this, ['README.md', '.gitignore', 'lib/index.js', 'test/index.js']);
   }
 }
 
