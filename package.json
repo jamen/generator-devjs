@@ -25,6 +25,7 @@
   ],
   "homepage": "https://github.com/devjs/generator-devjs#readme",
   "dependencies": {
+    "assign-deep": "^0.4.3",
     "async": "^1.5.2",
     "github-user": "^1.0.0",
     "yeoman-generator": "^0.22.5"

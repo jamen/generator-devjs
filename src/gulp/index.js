@@ -1,5 +1,5 @@
 import { Base } from 'yeoman-generator';
-import { init, write } from '../_helper';
+import { init, write, configure } from '../_helper';
 
 global.devjs = global.devjs || {};
 
@@ -27,6 +27,15 @@ class Gulp extends Base {
     this.prompt(prompts, gulp => {
       Object.assign(devjs, gulp);
       done();
+    });
+  }
+
+  configuring() {
+    configure.call(this, {
+      scripts: {
+        build: 'gulp',
+        prepublish: 'gulp',
+      },
     });
   }
 

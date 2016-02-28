@@ -1,6 +1,6 @@
 import { Base } from 'yeoman-generator';
 import { join } from 'path';
-import { init, write } from '../_helper';
+import { init, write, configure } from '../_helper';
 import user from 'github-user';
 
 global.devjs = global.devjs || {};
@@ -67,21 +67,21 @@ class Boilerplate extends Base {
   }
 
   configuring() {
-    const pack = this.fs.readJSON(this.destinationPath('package.json'), {});
-
-    pack.name = devjs.name;
-    pack.author = devjs.author;
-    pack.version = '0.0.0';
-    pack.main = devjs.entry;
-    pack.repository = { type: 'git', url: devjs.repo };
-    pack.scripts = {
-      test: `${devjs.tester !== 'none' ? devjs.tester : 'node'} test`,
-    };
-    if (devjs.gulp) pack.scripts.prepublish = 'gulp';
-    pack.private = devjs.private;
-    pack.files = [ 'lib' ];
-
-    this.fs.writeJSON(this.destinationPath('package.json'), pack);
+    configure.call(this, {
+      name: devjs.name,
+      author: devjs.author,
+      version: devjs.version,
+      main: devjs.entry,
+      repository: {
+        type: 'git',
+        url: devjs.repo,
+      },
+      scripts: {
+        test: `${devjs.tester !== 'none' ? devjs.tester : 'node'} test`
+      },
+      private: devjs.private,
+      files: [ 'lib' ],
+    });
   }
 
   install() {
