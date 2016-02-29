@@ -32,12 +32,21 @@ class Gulp extends Base {
   }
 
   configuring() {
+    const pack = this.fs.readJSON(this.destinationPath('package.json'), {});
     configure.call(this, {
       scripts: {
         build: 'gulp',
         prepublish: 'gulp',
       },
     });
+
+    if (pack.scripts.test) {
+      configure.call(this, {
+        scripts: {
+          test: 'gulp; ' + pack.scripts.test
+        }
+      });
+    }
   }
 
   writing() {
