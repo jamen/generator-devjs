@@ -1,11 +1,9 @@
-<%= name %>
-<%= name.split('').map(c => '=').join('') %>
-
+# <%= name %>
 > <%- desc %>
 
 ## Installation
 ```shell
-$ npm install<%= typeof cli !== 'undefined' && cli ? ' -g' : '' %> <%= private ? name : `${username}/${name}` %>
+$ npm install<%= typeof cli !== 'undefined' && cli ? ' -g' : '' %> <%= typeof private !== 'undefined' && private ? `${username}/${name}` : name %>
 ```
 
 ## Usage<% if (typeof cli !== 'undefined' && cli) { %>

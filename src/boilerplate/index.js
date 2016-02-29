@@ -78,8 +78,8 @@ class Boilerplate extends Base {
     configure.call(this, {
       name: devjs.name,
       author: devjs.author,
-      version: devjs.version,
-      desc: devjs.desc,
+      version: devjs.version || '0.0.0',
+      description: devjs.desc,
       main: devjs.entry,
       repository: {
         type: 'git',
