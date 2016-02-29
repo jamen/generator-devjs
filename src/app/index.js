@@ -59,19 +59,19 @@ class DevJS extends Base {
         });
       },
 
-      callback => {
-        this.prompt({
-          name: 'packager',
-          message: 'Packager?',
-          type: 'list',
-          choices: ['browserify', 'webpack', 'none'],
-          default: 'none',
-        }, ({ packager }) => {
-          if (packager !== 'none') this.composeWith(`devjs:${packager}`);
-          devjs.packager = packager;
-          callback();
-        });
-      }
+      // callback => {
+      //   this.prompt({
+      //     name: 'packager',
+      //     message: 'Packager?',
+      //     type: 'list',
+      //     choices: ['browserify', 'webpack', 'none'],
+      //     default: 'none',
+      //   }, ({ packager }) => {
+      //     devjs.packager = packager === 'none' ? false : packager;
+      //     if (devjs.packager) this.composeWith(`devjs:${devjs.packager}`);
+      //     callback();
+      //   });
+      // }
     ], done);
   }
 }
