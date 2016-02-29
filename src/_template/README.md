@@ -11,7 +11,8 @@ $ npm install<%= typeof cli !== 'undefined' && cli ? ' -g' : '' %> <%= private ?
 ## Usage<% if (typeof cli !== 'undefined' && cli) { %>
 ```shell
 $ <%= name %>
-```<% } else { %>```javascript
+```<% } else { %>
+```javascript
 import <%= name %> from '<%= name %>';
 ```<% } %>
 

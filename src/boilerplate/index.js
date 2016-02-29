@@ -56,11 +56,10 @@ class Boilerplate extends Base {
         },
       }
     ], opts => {
-      user(opts.name, (err, github) => {
+      Object.assign(devjs, opts);
+      user(opts.username, (err, github) => {
         opts.author = github.name;
         opts.avatar = github.avatar_url;
-
-        Object.assign(devjs, opts);
         done();
       });
     });
@@ -71,6 +70,7 @@ class Boilerplate extends Base {
       name: devjs.name,
       author: devjs.author,
       version: devjs.version,
+      desc: devjs.desc,
       main: devjs.entry,
       repository: {
         type: 'git',
