@@ -1,6 +1,7 @@
 import { Base } from 'yeoman-generator';
 import { join } from 'path';
 import { init, write, configure } from '../_helper';
+import assign from 'deep-assign';
 import user from 'github-user';
 
 global.devjs = global.devjs || {};
@@ -33,6 +34,10 @@ class Boilerplate extends Base {
         name: 'desc',
         message: 'Project description?',
         type: 'input',
+        default: () => {
+          const pack = this.fs.readJSON(this.destinationPath('package.json'), {});
+          return pack.desc || '';
+        }
       },
       {
         name: 'private',
@@ -56,10 +61,14 @@ class Boilerplate extends Base {
         },
       }
     ], opts => {
-      Object.assign(devjs, opts);
-      user(opts.username, (err, github) => {
-        opts.author = github.name;
-        opts.avatar = github.avatar_url;
+      assign(devjs, opts, { author: '', avatar: '' });
+
+      // Fetch GitHub information
+      user(devjs.username, (err, github) => {
+        if (!err) {
+          devjs.author = github.name;
+          devjs.avatar = github.avatar_url;
+        }
         done();
       });
     });

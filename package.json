@@ -25,7 +25,6 @@
   ],
   "homepage": "https://github.com/devjs/generator-devjs#readme",
   "dependencies": {
-    "assign-deep": "^0.4.3",
     "async": "^1.5.2",
     "github-user": "^1.0.0",
     "yeoman-generator": "^0.22.5"
@@ -34,6 +33,7 @@
     "babel-cli": "^6.5.1",
     "babel-core": "^6.5.1",
     "babel-plugin-add-module-exports": "^0.1.2",
-    "babel-preset-es2015": "^6.5.0"
+    "babel-preset-es2015": "^6.5.0",
+    "deep-assign": "^2.0.0"
   }
 }

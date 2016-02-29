@@ -1,6 +1,7 @@
 import { Base } from 'yeoman-generator';
 import { join } from 'path';
 import { init, write } from '../_helper';
+import assign from 'deep-assign';
 
 global.devjs = global.devjs || {};
 
@@ -24,7 +25,7 @@ class Babel extends Base {
     ], opts => {
       opts.presets = opts.presets.split(/(?:\s+)?,(?:\s+)?/);
       opts.plugins = opts.plugins.split(/(?:\s+)?,(?:\s+)?/);
-      Object.assign(devjs, opts);
+      assign(devjs, opts);
       done();
     });
   }

@@ -1,4 +1,4 @@
-import assign from 'assign-deep';
+import assign from 'deep-assign';
 
 export default function configure(options) {
   let pack = this.fs.readJSON(this.destinationPath('package.json'), {});

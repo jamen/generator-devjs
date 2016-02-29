@@ -1,5 +1,6 @@
 import { Base } from 'yeoman-generator';
 import { init, write, configure } from '../_helper';
+import assign from 'deep-assign';
 
 global.devjs = global.devjs || {};
 
@@ -25,7 +26,7 @@ class Gulp extends Base {
     });
 
     this.prompt(prompts, gulp => {
-      Object.assign(devjs, gulp);
+      assign(devjs, gulp);
       done();
     });
   }

@@ -19,7 +19,7 @@ import <%= name %> from '<%= name %>';
 ## Credits
 | ![<%= username %>][avatar] |
 |=--------------------------=|
-|   [<%= author %>][github]  |
+| [<%= author %>][github] |
 
   [avatar]: <%= avatar %>
   [github]: https://github.com/<%= username %>
