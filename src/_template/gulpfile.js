@@ -5,7 +5,7 @@ var master = [];
 var babel = require('gulp-babel');
 var del = require('del');
 gulp.task('clean:javascript', function() { return del(['out/**.js']) });
-gulp.task('build:javascript', function() {
+gulp.task('build:javascript', ['clean:javascript'], function() {
   return gulp.src('src/**.js', { base: 'src' })
     .pipe(babel())
     .pipe(gulp.dest('lib'));
