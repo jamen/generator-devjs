@@ -19,5 +19,5 @@ import <%= name %> from '<%= name %>';
 |:---:|
 | [<%= author %>][github] |
 
-  [avatar]: <%= avatar %>
+  [avatar]: <%= avatar %>&s=125
   [github]: https://github.com/<%= username %>
