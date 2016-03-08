@@ -12,6 +12,16 @@ $ npm i -g generator-devjs
 $ yo devjs[:subgen]
 ```
 
+Mixing with yo 1.7.0+:
+```
+yo devjs:babel, devjs:eslint, devjs:gulp, license
+```
+
+Supply pre-generated environments:
+```
+yo devjs:gulp --babel --eslint
+```
+
 Usable generators:
   - `devjs`: Everything
   - `devjs:boilerplate`: Some common pieces (package.json, README, etc.)
