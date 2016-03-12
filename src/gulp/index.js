@@ -40,7 +40,7 @@ class Gulp extends Base {
       },
     });
 
-    if (pack.scripts.test) {
+    if (typeof pack.scripts !== 'undefined' && pack.scripts.test) {
       configure.call(this, {
         scripts: {
           test: 'gulp; ' + pack.scripts.test
