@@ -1,4 +1,0 @@
-{
-  "presets": [ <%- presets.map(f => '"'+f+'"').join(', ') %> ],
-  "plugins": [ <%- plugins.map(f => '"'+f+'"').join(', ') %> ]
-}

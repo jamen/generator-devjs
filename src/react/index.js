@@ -1,32 +1,20 @@
 import { Base } from 'yeoman-generator';
-import { init } from '../_helper';
-
-global.devjs = global.devjs || {};
+import { init, prompt } from '../_helper';
 
 class React extends Base {
-  initializing() { init.call(this, 'babel'); }
+  initializing() { init.call(this, 'react'); }
 
   prompting() {
     const done = this.async();
-    const prompts = [];
-
-    if (devjs.babel) {
-      prompts.push({
-        name: 'jsx',
-        message: 'JSX with React?',
-        type: 'confirm',
-        default: true,
-      });
-    }
-
-    this.prompt(prompts, options => {
-      devjs.jsx = options.jsx || false;
-      done();
-    });
+    prompt.call(this, [
+      devjs.babel && 'reactJSX',
+    ], () => done());
   }
 
   install() {
-    this.npmInstall(['react', 'react-dom'], { save: true });
+    const deps = ['react', 'react-dom'];
+    if (devjs.reactJSX) deps.push('babel-preset-react');
+    this.npmInstall(deps, { save: true });
   }
 }
 

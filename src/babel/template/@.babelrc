@@ -1,0 +1,4 @@
+{
+  "presets": [ <%- babelPresets.map(f => '"'+f+'"').join(', ') %> ],
+  "plugins": [ <%- babelPlugins.map(f => '"'+f+'"').join(', ') %> ]
+}

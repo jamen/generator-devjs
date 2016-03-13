@@ -1,31 +1,19 @@
 import { Base } from 'yeoman-generator';
-import { join } from 'path';
-import { init, write } from '../_helper';
+import { init, write, prompts } from '../_helper';
 import assign from 'deep-assign';
-
-global.devjs = global.devjs || {};
 
 class Babel extends Base {
   initializing() { init.call(this, 'babel'); }
   prompting() {
     const done = this.async();
     this.prompt([
-      {
-        name: 'presets',
-        message: 'Babel presets? (separated by commas)',
-        type: 'input',
-        default: 'es2015' + (devjs.react ? ', react' : ''),
-      },
-      {
-        name: 'plugins',
-        message: 'Babel plugins? (separated by commas)',
-        type: 'input',
-        default: 'add-module-exports',
-      }
+      prompts.babelPresets,
+      prompts.babelPlugins,
     ], opts => {
-      opts.presets = opts.presets.split(/(?:\s+)?,(?:\s+)?/);
-      opts.plugins = opts.plugins.split(/(?:\s+)?,(?:\s+)?/);
-      assign(devjs, opts);
+      assign(devjs, {
+        babelPresets: opts.babelPresets.split(/(?:\s+)?,(?:\s+)?/),
+        babelPlugins: opts.babelPlugins.split(/(?:\s+)?,(?:\s+)?/),
+      });
       done();
     });
   }
@@ -36,8 +24,8 @@ class Babel extends Base {
 
   install() {
     const deps = ['babel-core'].concat(
-      devjs.presets.map(n => `babel-preset-${n}`),
-      devjs.plugins.map(n => `babel-plugin-${n}`)
+      devjs.babelPresets.map(n => `babel-preset-${n}`),
+      devjs.babelPlugins.map(n => `babel-plugin-${n}`)
     );
 
     this.npmInstall(deps, { saveDev: true });

@@ -1,3 +1,0 @@
-{
-  <% if (eslint_config !== 'custom') {%>"extends": "<%= lint_react ? 'airbnb' : (eslint_config == 'airbnb' ? 'airbnb/base' : eslint_config) %>"<%}%>
-}

@@ -1,10 +1,7 @@
 import { Base } from 'yeoman-generator';
-import { join } from 'path';
-import { init, write, configure } from '../_helper';
+import { init, write, configure, prompts } from '../_helper';
 import assign from 'deep-assign';
 import user from 'github-user';
-
-global.devjs = global.devjs || {};
 
 class Boilerplate extends Base {
   initializing() { init.call(this, 'boilerplate'); }
@@ -12,58 +9,15 @@ class Boilerplate extends Base {
   prompting() {
     const done = this.async();
     this.prompt([
-      {
-        name: 'name',
-        message: 'Project name?',
-        type: 'input',
-        default: this.appname,
-      },
-      {
-        name: 'entry',
-        message: 'Project entry?',
-        type: 'input',
-        default: 'lib',
-      },
-      {
-        name: 'username',
-        message: 'GitHub username?',
-        type: 'input',
-        store: true,
-      },
-      {
-        name: 'desc',
-        message: 'Project description?',
-        type: 'input',
-        default: () => {
-          const pack = this.fs.readJSON(this.destinationPath('package.json'), {});
-          return pack.desc || '';
-        }
-      },
-      {
-        name: 'private',
-        message: 'Project private?',
-        type: 'confirm',
-        default: false,
-      },
-      {
-        name: 'tester',
-        message: 'Unit tester?',
-        type: 'list',
-        choices: ['ava', 'jest-cli', 'mocha', 'tap', 'tape', 'none'],
-        default: 'ava',
-      },
-      {
-        name: 'repo',
-        message: 'Project repository?',
-        type: 'input',
-        default: ({ private: p, username: u, name: n }) => {
-          return p ? 'none' : `https://github.com/${u}/${n}`;
-        },
-      }
+      prompts.name,
+      prompts.entry,
+      prompts.username,
+      prompts.desc,
+      prompts.private,
+      prompts.tester,
+      prompts.repo,
     ], opts => {
       assign(devjs, opts, { author: '', avatar: '' });
-
-      // Fetch GitHub information
       user(devjs.username, (err, github) => {
         if (!err) {
           devjs.author = github.name;
@@ -86,10 +40,10 @@ class Boilerplate extends Base {
         url: devjs.repo,
       },
       scripts: {
-        test: `${devjs.tester !== 'none' ? devjs.tester : 'node'} test`
+        test: `${devjs.tester !== 'none' ? devjs.tester : 'node'} test`,
       },
       private: devjs.private,
-      files: [ 'lib' ],
+      files: ['lib'],
     });
   }
 
@@ -100,7 +54,7 @@ class Boilerplate extends Base {
   }
 
   writing() {
-    write.call(this, ['README.md', '.gitignore', 'lib/index.js', 'test/index.js']);
+    write.call(this, ['.gitignore', 'lib/index.js', 'test/index.js']);
   }
 }
 

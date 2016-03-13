@@ -1,20 +1,19 @@
 var gulp = require('gulp');
-var master = [];
-
-<% if (typeof gulp_babel !== 'undefined' && gulp_babel) { %>
+const master = [];
+<% if (babel) { %>
 var babel = require('gulp-babel');
 var del = require('del');
-gulp.task('clean:javascript', function() { return del(['out/**.js']) });
+gulp.task('clean', function() { return del(['<%= entry %>/**.js']) });
 gulp.task('build:javascript', ['clean:javascript'], function() {
-  return gulp.src('src/**.js', { base: 'src' })
+  return gulp.src('<%= babelSource %>/**.js', { base: '<%= babelSource %>' })
     .pipe(babel())
-    .pipe(gulp.dest('lib'));
+    .pipe(gulp.dest('<%= entry %>'));
 });
 master.push('clean:javascript', 'build:javascript');
-<% } if (typeof gulp_eslint !== 'undefined' && gulp_eslint) { %>
+<% } if (eslint) { %>
 var eslint = require('gulp-eslint');
 gulp.task('lint:javascript', function() {
-  return gulp.src('src/**.js')
+  return gulp.src('<%= babel ? babelSource || entry %>/**.js')
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());

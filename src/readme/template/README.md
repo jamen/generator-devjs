@@ -3,10 +3,10 @@
 
 ## Installation
 ```shell
-$ npm install<%= typeof cli !== 'undefined' && cli ? ' -g' : '' %> <%= typeof private !== 'undefined' && private ? `${username}/${name}` : name %>
+$ npm install<%= cli ? ' -g' : '' %> <%= typeof private !== 'undefined' && private ? `${username}/${name}` : name %>
 ```
 
-## Usage<% if (typeof cli !== 'undefined' && cli) { %>
+## Usage<% if (cli) { %>
 ```shell
 $ <%= name %>
 ```<% } else { %>
